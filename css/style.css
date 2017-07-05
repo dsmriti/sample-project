@@ -1,0 +1,6 @@
+.input-label{
+color:#444 !important;
+}
+.item-floating-label .input-label {
+    opacity: 1;
+}
