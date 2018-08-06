@@ -1,0 +1,59 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+    <form class="example-form">
+    <mat-list role="list">
+        <mat-list-item role="listitem"><mat-radio-group>
+            <mat-radio-button value="1" (click)="full=true;specific=false;complex=false">Full</mat-radio-button>
+            <mat-radio-button value="2" (click)="specific=true;complex=false">Specific</mat-radio-button>
+            <mat-radio-button value="2" (click)="specific=false;complex=true">complex</mat-radio-button>
+          </mat-radio-group>
+        </mat-list-item>
+        <br><br>
+        
+        <div *ngIf="full">
+          <hr>
+        <mat-list-item role="listitem">
+          <p>Full search</p>
+        </mat-list-item>
+        </div>
+        <br><br>
+       
+        <div >
+          <hr>
+          <div *ngIf="specific || complex ">
+            <mat-list-item role="listitem">
+              <p>specific/ complex input 1</p>
+            </mat-list-item>
+          </div>
+        <mat-list-item role="listitem" *ngIf="complex">
+            <p>complex input 2</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="complex">
+              <p>complex input 3</p>
+        </mat-list-item>
+        </div>
+      </mat-list>
+      </form>
+  </div>
+
+//TS File
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-demo',
+  templateUrl: './demo.component.html',
+  styleUrls: ['./demo.component.css']
+})
+export class DemoComponent implements OnInit {
+  full:boolean=false;
+  specific:boolean=false;
+  complex:boolean=false;
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+
+
