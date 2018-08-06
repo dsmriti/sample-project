@@ -1,42 +1,61 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
+<div class="demo">
     <form class="example-form">
+      <mat-list>
+          <mat-checkbox>Asset ID {{readonly}}</mat-checkbox>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Enter Asset ID" [readonly]=readonly1>
+            </mat-form-field>
+      </mat-list>
+      <mat-list>
+          <mat-checkbox>Asset Name</mat-checkbox>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Enter Asset Name" [readonly]=readonly1>
+            </mat-form-field>
+      </mat-list>
     <mat-list role="list">
         <mat-list-item role="listitem"><mat-radio-group>
-            <mat-radio-button value="1" (click)="full=true;specific=false;complex=false">Full</mat-radio-button>
-            <mat-radio-button value="2" (click)="specific=true;complex=false">Specific</mat-radio-button>
-            <mat-radio-button value="2" (click)="specific=false;complex=true">complex</mat-radio-button>
+            <mat-radio-button value="1" (click)="fullRadio()">Full</mat-radio-button>
+            <mat-radio-button value="1" (click)="specificRadio()">Specific</mat-radio-button>
+            <mat-radio-button value="1" (click)="complexRadio()">complex</mat-radio-button>
           </mat-radio-group>
-        </mat-list-item>
-        <br><br>
+    </mat-list-item>
+    <mat-list-item>
+        <mat-checkbox>Case Senstive</mat-checkbox>
+        <mat-checkbox>exact match!</mat-checkbox>
+    </mat-list-item>
         
         <div *ngIf="full">
-          <hr>
-        <mat-list-item role="listitem">
-          <p>Full search</p>
-        </mat-list-item>
+          <p>Search Pattern(Full)</p>
+          <mat-list-item role="listitem">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Full Search" [readonly]=readonly2>
+          </mat-form-field>
+          </mat-list-item>
         </div>
-        <br><br>
-       
-        <div >
-          <hr>
+        <br>
           <div *ngIf="specific || complex ">
+            <p>Search Pattern(Specific/Complex)</p>
             <mat-list-item role="listitem">
-              <p>specific/ complex input 1</p>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Tags">
+                  </mat-form-field>
             </mat-list-item>
           </div>
         <mat-list-item role="listitem" *ngIf="complex">
-            <p>complex input 2</p>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Description">
+              </mat-form-field>
         </mat-list-item>
         <mat-list-item role="listitem" *ngIf="complex">
-              <p>complex input 3</p>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Mime Type">
+              </mat-form-field>
         </mat-list-item>
-        </div>
       </mat-list>
-      </form>
+    </form>
   </div>
 
-//TS File
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -45,15 +64,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demo.component.css']
 })
 export class DemoComponent implements OnInit {
+  fullsearching:any;
   full:boolean=false;
   specific:boolean=false;
   complex:boolean=false;
+  readonly1:boolean=true;
+  readonly2:boolean=false;
   constructor() { }
 
   ngOnInit() {
   }
+  fullRadio(){
+    this.full=true;
+    this.specific=false;
+    this.complex=false;
+    this.readonly1=true;
+    this.readonly2=false;
+    // this.readonly=true;
+    
+  }
+  specificRadio(){
+    this.specific=true;
+    this.complex=false;
+    this.readonly1=false;
+    this.readonly2=true;
+    
+  }
+  complexRadio(){
+    this.specific=false;
+    this.complex=true;
+    this.readonly1=false;
+    this.readonly2=true;
+    // this.readonly=true;
+  }
 
 }
-
-
 
